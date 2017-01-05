@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--<attr name="RatingViewStyle" format="reference" />-->
+
+    <declare-styleable name="myCustomRatingBar">
+        <attr name="myRatingbarStyle">
+            <enum name="small" value="1" />
+            <enum name="smallMore" value="2" />
+            <enum name="medium" value="3" />
+            <enum name="mediumLarge" value="4" />
+            <enum name="large" value="5" />
+        </attr>
+        <attr name="maxCount" format="integer" />
+        <attr name="rating" format="float" />
+        <attr name="activeColor" format="integer" />
+        <attr name="emptyColor" format="integer" />
+        <attr name="space" format="dimension" />
+        <attr name="touchable" format="boolean" />
+    </declare-styleable>
+</resources>
