@@ -18,5 +18,13 @@ for showing ratingbar on view , you have to put following line of code in XML wh
 
 
    OR
-you can also create it porgrammatically and can customize to fit according to your requirement without extra spacing etc...
+you can also create it porgrammatically and can customize to fit according to your requirement without extra padding etc...
 
+```
+  MyRatingBar myRatingBar = new MyRatingBar(this);
+        myRatingBar.setMaxCount(5);
+        myRatingBar.setRatingCount(3.5f);
+        myRatingBar.setRatingStyle(MyRatingBar.STYLE_LARGE);
+        myRatingBar.setBackgroundColor(Color.WHITE);
+        setContentView(myRatingBar);
+        ```
