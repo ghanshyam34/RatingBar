@@ -13,7 +13,8 @@ for showing ratingbar on view , you have to put following line of code in XML wh
     app:activeColor="@android:color/black"
     app:rating="3"
     app:myRatingbarStyle="medium"
-  />```
+  />
+  ```
 
 
    OR
