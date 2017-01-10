@@ -28,3 +28,7 @@ you can also create it porgrammatically and can customize to fit according to yo
   myRatingBar.setBackgroundColor(Color.WHITE);
   setContentView(myRatingBar);
 ```
+
+Please see the below example in Screen shots
+
+
