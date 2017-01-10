@@ -18,7 +18,7 @@ for showing ratingbar on view , you have to put following line of code in XML wh
 
 
    OR
-you can also create it porgrammatically and can customize to fit according to your requirement without extra padding etc...
+you can also create it porgrammatically and can customize to fit according to your requirement without extra padding and fit to center according to your requirement etc...
 
 ```
   MyRatingBar myRatingBar = new MyRatingBar(this);
