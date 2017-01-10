@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.support.annotation.NonNull;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -22,7 +21,7 @@ import java.util.ArrayList;
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 
 /**
- * Created by Ghanshyam on 12/30/2016.
+ * Created by Ghanshyam on 12/24/2016.
  */
 public class MyRatingBar extends LinearLayout implements View.OnClickListener {
 
@@ -381,7 +380,10 @@ public class MyRatingBar extends LinearLayout implements View.OnClickListener {
         }
 
         @Override
-        protected void onDraw(@NonNull Canvas canvas) {
+        protected void onDraw(Canvas canvas) {
+
+            if(canvas == null)
+                return;
 
             canvas.drawColor(backgroundColor);
 
@@ -403,20 +405,6 @@ public class MyRatingBar extends LinearLayout implements View.OnClickListener {
 
             mPaint.setColor(halfPartNormalColorColor);
             canvas.drawText(text, -mBounds.left, -mBounds.top, mPaint);
-
-//            TextPaint textPaint = getPaint();
-//            textPaint.setColor(getCurrentTextColor());
-//            textPaint.drawableState = getDrawableState();
-//            canvas.save();
-//
-//            //converts 5dip into pixels
-//            int additionalPadding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, getContext().getResources().getDisplayMetrics());
-//
-//            //subtracts the additional padding from the top of the canvas that textview draws to in order to align it with the top.
-//            canvas.translate(0, additionalPadding);
-//            if(getLayout() != null)
-//                getLayout().draw(canvas);
-//            canvas.restore();
         }
 
 
@@ -424,7 +412,7 @@ public class MyRatingBar extends LinearLayout implements View.OnClickListener {
         protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec);
             calculateTextParams();
-            setMeasuredDimension(mBounds.width(), mBounds.height()/*-mBounds.top + 1*/);
+            setMeasuredDimension(mBounds.width(), mBounds.height());
         }
 
         private String calculateTextParams() {
@@ -440,10 +428,19 @@ public class MyRatingBar extends LinearLayout implements View.OnClickListener {
     }
 }
 
+
 //import android.content.Context;
 //import android.content.res.TypedArray;
 //import android.graphics.Canvas;
 //import android.graphics.Color;
+//import android.view.MotionEvent;
+//import android.graphics.Paint;
+//import android.graphics.Rect;
+//import android.support.annotation.NonNull;
+//import android.util.AttributeSet;
+//import android.view.MotionEvent;
+//import android.view.View;
+//import android.widget.LinearLayout;
 //import android.graphics.Paint;
 //import android.graphics.Rect;
 //import android.support.annotation.NonNull;
@@ -455,6 +452,15 @@ public class MyRatingBar extends LinearLayout implements View.OnClickListener {
 //import android.util.AttributeSet;
 //import android.view.MotionEvent;
 //import android.view.View;
+//import android.graphics.Color;
+//import android.graphics.Paint;
+//import android.graphics.Rect;
+//import android.support.annotation.NonNull;
+//import android.util.AttributeSet;
+//import android.view.MotionEvent;
+//import android.view.View;
+//import android.widget.LinearLayout;
+//import android.widget.TextView;
 //import android.widget.LinearLayout;
 //import android.widget.TextView;
 //import java.util.ArrayList;
@@ -471,4 +477,31 @@ public class MyRatingBar extends LinearLayout implements View.OnClickListener {
 //        super(context, attrs);
 //
 //    }
-//}
+
+//    private void updateRatingCount(int ratingCount) {
+//        this.ratingCount = ratingCount;
+//        updateRating(false, false);
+//    }
+//
+//    public int getMaxCount() {
+//        return maxCount;
+//    }
+//
+//    public float getRatingCount() {
+//        return ratingCount;
+//    }
+//
+//    public void setActiveColor(int activeColor) {
+//        this.activeColor = activeColor;
+//        updateRating(false, false);
+//    }
+//
+//    public void setNormalColor(int normalColor) {
+//        this.normalColor = normalColor;
+//        updateRating(false, false);
+//    }
+//
+//    public void setSpace(int space) {
+//        this.space = space;
+//        updateRating(false, false);
+//    }//}
