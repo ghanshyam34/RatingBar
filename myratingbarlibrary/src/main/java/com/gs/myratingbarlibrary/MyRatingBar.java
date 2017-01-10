@@ -7,14 +7,22 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.annotation.NonNull;
+import android.text.TextPaint;
 import android.util.AttributeSet;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
+
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
+
 /**
- * Created by Ghanshyam on 12/24/2016.
+ * Created by Ghanshyam on 12/30/2016.
  */
 public class MyRatingBar extends LinearLayout implements View.OnClickListener {
 
@@ -61,14 +69,15 @@ public class MyRatingBar extends LinearLayout implements View.OnClickListener {
 
         if (attrs != null) {
 
-            TypedArray typedArray = mcoContext.obtainStyledAttributes(attrs, R.styleable.myCustomRatingBar);
-            ratingStyle = typedArray.getInt(R.styleable.myCustomRatingBar_myRatingbarStyle, 0);
-            maxCount = typedArray.getInteger(R.styleable.myCustomRatingBar_maxCount, 5);
-            ratingCount = typedArray.getFloat(R.styleable.myCustomRatingBar_rating, 0);
-            activeColor = typedArray.getInteger(R.styleable.myCustomRatingBar_activeColor, Color.YELLOW);
-            normalColor = typedArray.getInteger(R.styleable.myCustomRatingBar_emptyColor, Color.LTGRAY);
-            space = typedArray.getDimensionPixelSize(R.styleable.myCustomRatingBar_space, 0);
-            isTouchable = typedArray.getBoolean(R.styleable.myCustomRatingBar_touchable, true);
+            TypedArray typedArray = mcoContext.obtainStyledAttributes(attrs, R.styleable.MyRatingBar);
+            ratingStyle = typedArray.getInt(R.styleable.MyRatingBar_myRatingbarStyle, 0);
+            maxCount = typedArray.getInteger(R.styleable.MyRatingBar_maxCount, 5);
+            ratingCount = typedArray.getFloat(R.styleable.MyRatingBar_rating, 0);
+            activeColor = typedArray.getInteger(R.styleable.MyRatingBar_activeColor, Color.YELLOW);
+            normalColor = typedArray.getInteger(R.styleable.MyRatingBar_emptyColor, Color.LTGRAY);
+            space = typedArray.getDimensionPixelSize(R.styleable.MyRatingBar_space, 0);
+//            space = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,R.styleable.MyRatingBar_space, getContext().getResources().getDisplayMetrics());
+            isTouchable = typedArray.getBoolean(R.styleable.MyRatingBar_touchable, true);
             typedArray.recycle();
         }
 
@@ -242,7 +251,17 @@ public class MyRatingBar extends LinearLayout implements View.OnClickListener {
         cursor.setText("\u2605");
         cursor.halfPartActiveColorColor = normalColor;
         cursor.halfPartNormalColorColor = normalColor;
-        cursor.setPadding(space, space, space, space);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        if(space > 1){
+            lp.rightMargin = space/2;
+            lp.leftMargin = space/2;
+//            cursor.setPadding(space, space, space, space);
+        }else{
+            lp.rightMargin = space;
+            lp.leftMargin = space;
+        }
+        cursor.setLayoutParams(lp);
+
 
         switch (ratingStyle) {
 
@@ -325,21 +344,21 @@ public class MyRatingBar extends LinearLayout implements View.OnClickListener {
 
         public TextViewWithoutPaddings(Context context) {
             super(context);
-//            setIncludeFontPadding(false); //remove the font padding
-//            setGravity(getGravity() | Gravity.TOP);
+            setIncludeFontPadding(false); //remove the font padding
+            setGravity(getGravity() | Gravity.TOP);
         }
 
-//        public TextViewWithoutPaddings(Context context, AttributeSet attrs) {
-//            super(context, attrs);
-//            setIncludeFontPadding(false); //remove the font padding
-//            setGravity(getGravity() | Gravity.TOP);
-//        }
+        public TextViewWithoutPaddings(Context context, AttributeSet attrs) {
+            super(context, attrs);
+            setIncludeFontPadding(false); //remove the font padding
+            setGravity(getGravity() | Gravity.TOP);
+        }
 //
-//        public TextViewWithoutPaddings(Context context, AttributeSet attrs, int defStyleAttr) {
-//            super(context, attrs, defStyleAttr);
-//            setIncludeFontPadding(false); //remove the font padding
-//            setGravity(getGravity() | Gravity.TOP);
-//        }
+        public TextViewWithoutPaddings(Context context, AttributeSet attrs, int defStyleAttr) {
+            super(context, attrs, defStyleAttr);
+            setIncludeFontPadding(false); //remove the font padding
+            setGravity(getGravity() | Gravity.TOP);
+        }
 
         public int getTextWidth(String text) {
 
@@ -360,7 +379,6 @@ public class MyRatingBar extends LinearLayout implements View.OnClickListener {
             int width = bounds.width();
             return height;
         }
-
 
         @Override
         protected void onDraw(@NonNull Canvas canvas) {
@@ -386,6 +404,19 @@ public class MyRatingBar extends LinearLayout implements View.OnClickListener {
             mPaint.setColor(halfPartNormalColorColor);
             canvas.drawText(text, -mBounds.left, -mBounds.top, mPaint);
 
+//            TextPaint textPaint = getPaint();
+//            textPaint.setColor(getCurrentTextColor());
+//            textPaint.drawableState = getDrawableState();
+//            canvas.save();
+//
+//            //converts 5dip into pixels
+//            int additionalPadding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, getContext().getResources().getDisplayMetrics());
+//
+//            //subtracts the additional padding from the top of the canvas that textview draws to in order to align it with the top.
+//            canvas.translate(0, additionalPadding);
+//            if(getLayout() != null)
+//                getLayout().draw(canvas);
+//            canvas.restore();
         }
 
 
@@ -393,7 +424,7 @@ public class MyRatingBar extends LinearLayout implements View.OnClickListener {
         protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec);
             calculateTextParams();
-            setMeasuredDimension(mBounds.width() + 1, -mBounds.top + 1);
+            setMeasuredDimension(mBounds.width(), mBounds.height()/*-mBounds.top + 1*/);
         }
 
         private String calculateTextParams() {
