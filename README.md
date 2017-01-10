@@ -22,9 +22,9 @@ you can also create it porgrammatically and can customize to fit according to yo
 
 ```
   MyRatingBar myRatingBar = new MyRatingBar(this);
-        myRatingBar.setMaxCount(5);
-        myRatingBar.setRatingCount(3.5f);
-        myRatingBar.setRatingStyle(MyRatingBar.STYLE_LARGE);
-        myRatingBar.setBackgroundColor(Color.WHITE);
-        setContentView(myRatingBar);
-        ```
+  myRatingBar.setMaxCount(5);
+  myRatingBar.setRatingCount(3.5f);
+  myRatingBar.setRatingStyle(MyRatingBar.STYLE_LARGE);
+  myRatingBar.setBackgroundColor(Color.WHITE);
+  setContentView(myRatingBar);
+```
