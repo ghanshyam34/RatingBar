@@ -31,6 +31,4 @@ you can also create it porgrammatically and can customize to fit according to yo
 
 Please see the below example in Screen shots
 
-![screenshot_2017-01-10-19-03-58](https://cloud.githubusercontent.com/assets/13448460/21808513/a865643c-d769-11e6-8629-91e7cdd1d4a7.png)
-
-<img src="https://camo.githubusercontent.com/..." data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="400" />
+<img src="https://cloud.githubusercontent.com/assets/13448460/21808513/a865643c-d769-11e6-8629-91e7cdd1d4a7.png" data-canonical-src="https://cloud.githubusercontent.com/assets/13448460/21808513/a865643c-d769-11e6-8629-91e7cdd1d4a7.png" width="400" height="500" />
