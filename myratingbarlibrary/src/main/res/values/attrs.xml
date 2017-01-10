@@ -3,7 +3,7 @@
 
     <!--<attr name="RatingViewStyle" format="reference" />-->
 
-    <declare-styleable name="myCustomRatingBar">
+    <declare-styleable name="MyRatingBar">
         <attr name="myRatingbarStyle">
             <enum name="small" value="1" />
             <enum name="smallMore" value="2" />
@@ -13,8 +13,8 @@
         </attr>
         <attr name="maxCount" format="integer" />
         <attr name="rating" format="float" />
-        <attr name="activeColor" format="integer" />
-        <attr name="emptyColor" format="integer" />
+        <attr name="activeColor" format="color" />
+        <attr name="emptyColor" format="color" />
         <attr name="space" format="dimension" />
         <attr name="touchable" format="boolean" />
     </declare-styleable>
