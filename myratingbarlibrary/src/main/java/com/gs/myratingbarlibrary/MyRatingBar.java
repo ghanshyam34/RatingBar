@@ -1,5 +1,4 @@
 package com.gs.myratingbarlibrary;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -8,22 +7,22 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.text.TextPaint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
-
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
-
 /**
  * Created by Ghanshyam on 12/24/2016.
  */
 public class MyRatingBar extends LinearLayout implements View.OnClickListener {
+
+    public static final String TAG = MyRatingBar.class.getSimpleName();
 
     public static final int STYLE_SMALL = 1;
     public static final int STYLE_SMALL_MORE = 2;
@@ -39,7 +38,7 @@ public class MyRatingBar extends LinearLayout implements View.OnClickListener {
     private int space = 2;
     private boolean isTouchable = true;
     private int backgroundColor = Color.BLACK;
-
+    RatingChangeListener ratingChangeListener;
 
     private Context mcoContext;
     private ArrayList<TextContent> textViewsList = new ArrayList<>();
@@ -188,6 +187,12 @@ public class MyRatingBar extends LinearLayout implements View.OnClickListener {
             textViewsList.add(textContent);
             addView(textContent.tv);
         }
+
+        if(ratingChangeListener != null){
+
+            ratingChangeListener.onRatingChanged(this,ratingCount);
+
+        }
     }
 
     public void setTouchable(boolean touchable) {
@@ -210,34 +215,7 @@ public class MyRatingBar extends LinearLayout implements View.OnClickListener {
         updateRating(false, false);
     }
 
-    @Override
-    public void setBackgroundColor(int backgroundColor) {
-        this.backgroundColor = backgroundColor;
-        updateRating(false, false);
-    }
 
-    private void updateRatingCount(int ratingCount) {
-        this.ratingCount = ratingCount;
-        updateRating(false, false);
-    }
-
-    public int getMaxCount() {
-        return maxCount;
-    }
-
-    public float getRatingCount() {
-        return ratingCount;
-    }
-
-    public void setActiveColor(int activeColor) {
-        this.activeColor = activeColor;
-        updateRating(false, false);
-    }
-
-    public void setNormalColor(int normalColor) {
-        this.normalColor = normalColor;
-        updateRating(false, false);
-    }
 
     public void setSpace(int space) {
         this.space = space;
@@ -265,22 +243,27 @@ public class MyRatingBar extends LinearLayout implements View.OnClickListener {
         switch (ratingStyle) {
 
             case STYLE_SMALL:
+                Log.i(TAG,"Small");
                 cursor.setTextSize(20);
                 break;
 
             case STYLE_SMALL_MORE:
+                Log.i(TAG,"Small more");
                 cursor.setTextSize(10);
                 break;
 
             case STYLE_MEDIUM:
+                Log.i(TAG,"medium");
                 cursor.setTextSize(30);
                 break;
 
             case STYLE_MEDIUM_LARGE:
+                Log.i(TAG,"medium large");
                 cursor.setTextSize(37);
                 break;
 
             case STYLE_LARGE:
+                Log.i(TAG,"large");
                 cursor.setTextSize(60);
                 break;
 
@@ -426,82 +409,39 @@ public class MyRatingBar extends LinearLayout implements View.OnClickListener {
             return text;
         }
     }
+
+    @Override
+    public void setBackgroundColor(int backgroundColor) {
+        this.backgroundColor = backgroundColor;
+        updateRating(false, false);
+    }
+
+    private void updateRatingCount(int ratingCount) {
+        this.ratingCount = ratingCount;
+        updateRating(false, false);
+    }
+
+    public int getMaxCount() {
+        return maxCount;
+    }
+
+    public interface RatingChangeListener{
+
+        public void onRatingChanged(MyRatingBar ratingBar,float rating);
+
+    }
+
+    public float getRatingCount() {
+        return ratingCount;
+    }
+
+    public void setActiveColor(int activeColor) {
+        this.activeColor = activeColor;
+        updateRating(false, false);
+    }
+
+    public void setNormalColor(int normalColor) {
+        this.normalColor = normalColor;
+        updateRating(false, false);
+    }
 }
-
-
-//import android.content.Context;
-//import android.content.res.TypedArray;
-//import android.graphics.Canvas;
-//import android.graphics.Color;
-//import android.view.MotionEvent;
-//import android.graphics.Paint;
-//import android.graphics.Rect;
-//import android.support.annotation.NonNull;
-//import android.util.AttributeSet;
-//import android.view.MotionEvent;
-//import android.view.View;
-//import android.widget.LinearLayout;
-//import android.graphics.Paint;
-//import android.graphics.Rect;
-//import android.support.annotation.NonNull;
-//import android.util.AttributeSet;
-//import android.view.MotionEvent;
-//import android.graphics.Paint;
-//import android.graphics.Rect;
-//import android.support.annotation.NonNull;
-//import android.util.AttributeSet;
-//import android.view.MotionEvent;
-//import android.view.View;
-//import android.graphics.Color;
-//import android.graphics.Paint;
-//import android.graphics.Rect;
-//import android.support.annotation.NonNull;
-//import android.util.AttributeSet;
-//import android.view.MotionEvent;
-//import android.view.View;
-//import android.widget.LinearLayout;
-//import android.widget.TextView;
-//import android.widget.LinearLayout;
-//import android.widget.TextView;
-//import java.util.ArrayList;
-///**
-// * Created by Ghanshyam on 12/24/2016.
-// */
-//public class MyRatingBar extends LinearLayout implements View.OnClickListener {
-//
-//    public MyRatingBar(Context context) {
-//        super(context);
-//    }
-//
-//    public MyRatingBar(Context context, AttributeSet attrs) {
-//        super(context, attrs);
-//
-//    }
-
-//    private void updateRatingCount(int ratingCount) {
-//        this.ratingCount = ratingCount;
-//        updateRating(false, false);
-//    }
-//
-//    public int getMaxCount() {
-//        return maxCount;
-//    }
-//
-//    public float getRatingCount() {
-//        return ratingCount;
-//    }
-//
-//    public void setActiveColor(int activeColor) {
-//        this.activeColor = activeColor;
-//        updateRating(false, false);
-//    }
-//
-//    public void setNormalColor(int normalColor) {
-//        this.normalColor = normalColor;
-//        updateRating(false, false);
-//    }
-//
-//    public void setSpace(int space) {
-//        this.space = space;
-//        updateRating(false, false);
-//    }//}
