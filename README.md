@@ -33,3 +33,5 @@ you can also create it porgrammatically and can customize to fit according to yo
 Please see the below example in Screen shots
 
 <img src="https://cloud.githubusercontent.com/assets/13448460/21808513/a865643c-d769-11e6-8629-91e7cdd1d4a7.png" data-canonical-src="https://cloud.githubusercontent.com/assets/13448460/21808513/a865643c-d769-11e6-8629-91e7cdd1d4a7.png" width="320" height="450" />
+
+LICENSE
