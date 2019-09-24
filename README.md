@@ -37,8 +37,6 @@ Please see the below example in Screen shots
 
 
 
-[Contribution guidelines for this project](docs/LICENSE.md)
-
 MIT License
 
 Copyright (c) 2019 Ghanshyamp
