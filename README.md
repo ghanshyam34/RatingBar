@@ -1,6 +1,12 @@
 # Android Ratingbar demo
 This Ratingbar android demo contains the code to show the rating bar on view
 
+```
+dependencies {
+	        implementation 'com.github.ghanshyam34:RatingBar:Tag'
+	}
+```
+
 ##Getting Started
 
 for showing ratingbar on view , you have to put following line of code in XML where you want to use
