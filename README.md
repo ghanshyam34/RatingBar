@@ -3,7 +3,7 @@ This Ratingbar android demo contains the code to show the rating bar on view
 
 ```
 dependencies {
-	        implementation 'com.github.ghanshyam34:RatingBar:Tag'
+	        implementation 'com.github.ghanshyam34:RatingBar:7cb4390547'
 	}
 ```
 
